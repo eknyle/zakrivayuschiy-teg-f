@@ -1,1 +1,18 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+  --background-color: white;
+  --color: black;
+  --color-transparent: rgba(0, 0, 0, 0);
+  --disabled-color: rgba(0, 0, 0, 0.6);
+  --label-disabled-color: rgba(255, 255, 255, 0.5);
+  --main-font: Inter, sans-serif;
+  --add-font: "PressStart2P", sans-serif;
+  --header-font-weight: 785;
+  --main-font-weight: 465;
+  --background-image: 
+  repeating-linear-gradient(to right,rgb(211, 211, 211), rgb(211, 211, 211) 2px, rgb(211 211 211 / 0) 2px, rgb(211 211 211 / 0) 4px),
+  repeating-linear-gradient(to bottom,rgb(211, 211, 211), rgb(211, 211, 211) 2px, rgb(211 211 211 / 0) 2px, rgb(211 211 211 / 0) 4px),
+  linear-gradient(to bottom,#e7e7e7 10%, #1a1a1a 100%);
+  --blend-diff-color: white;
+  --spark-color: red;
+}
