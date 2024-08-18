@@ -15,8 +15,8 @@
 */
 
 .page {
-  min-inline-size: 320px;
-  max-inline-size: 1140px;
+  min-inline-size: 375px;
+  max-inline-size: 1440px;
   min-block-size: 100dvb;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,6 @@
   margin: 6.25rem 0;
   padding: 0;
   inline-size: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
-  min-block-size: clamp(20.4375rem, 19.5352rem + 3.8498vw, 23rem);
   border: 2px solid var(--color);
   display: flex;
   flex-direction: column;
@@ -52,20 +51,11 @@
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   font-weight: normal;
   color: var(--color);
-}
-
-.header__link:hover {
-  color: var(--disabled-color);
   transition: color 0.3s ease;
 }
 
 .header__link:focus {
   outline: none;
-}
-
-.header__link:focus-visible {
-  color: var(--disabled-color);
-  transition: color 0.3s ease;
 }
 
 .header__title {
@@ -88,7 +78,7 @@
 .theme-menu__button {
   text-transform: uppercase;
   margin: 0;
-  padding: 0 0 3px 0;
+  padding: 0 0 3px 24px;
   font-family: var(--add-font);
   font-size: 0.875rem;
   background: none;
@@ -96,7 +86,6 @@
   color: var(--color);
   cursor: pointer;
   position: relative;
-  padding-left: 24px;
 }
 
 .theme-menu__button:disabled {
@@ -111,9 +100,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 4px;
-  height: 4px;
-  animation: pointer 0.5s ease-in-out infinite alternate-reverse;
+  inline-size: 4px;
+  block-size: 4px;
+  animation: pointer 0.5s ease-in-out infinite alternate;
 }
 
 .theme-menu__button::after {
@@ -122,26 +111,69 @@
   left: 24px;
   bottom: 0;
   display: block;
-  width: 0;
-  height: 2px;
+  inline-size: 0;
+  block-size: 2px;
   background: var(--disabled-color);
   color: var(--disabled-color);
   transition: 0.5s;
 }
 
 .theme-menu__button:focus-visible:after {
-  width: calc(100% - 24px);
+  inline-size: calc(100% - 24px);
 }
 
 .theme-menu__button:focus {
+  outline: none;
+}
+
+.theme-menu__button:focus-visible {
   color: var(--disabled-color);
   transition: color 0.3s ease;
-  outline: none;
 }
 
 .theme-menu__button:hover {
   color: var(--disabled-color);
   transition: color 0.3s ease;
+}
+
+.button {
+  background-color: var(--background-color);
+  border: 2px solid var(--color);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0;
+}
+
+.button:hover {
+  border: 2px solid var(--disabled-color);
+  color: var(--disabled-color);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color);
+  block-size: 100%;
+  inline-size: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.button:hover::before {
+  content: "";
+  background: var(--color);
+  inline-size: 100%;
+  transform: scale(1);
+  z-index: 0;
 }
 
 .main {
@@ -160,13 +192,11 @@
   background-color: var(--background-color);
   border: 2px solid var(--color);
   inline-size: 100%;
-  min-block-size: clamp(20.4375rem, 19.1814rem + 5.3595vw, 23rem);
   display: flex;
   flex-direction: column;
 }
 
 .card__header {
-  white-space: pre-line;
   margin: 0.1875rem 0 0.1875rem 0.625rem;
   font-family: var(--main-font);
   font-size: 1.125rem;
@@ -211,7 +241,7 @@
   font-family: var(--main-font);
   font-size: 1.125rem;
   font-weight: normal;
-  color: var(--disabled-color);
+  color: var(--color);
   margin: 1.5625rem 1.5625rem;
   display: flex;
   flex-direction: column;
@@ -294,7 +324,7 @@
 .card__buttons {
   margin: 0 1.5625rem 1.5625rem 0;
   padding: 0;
-  height: 2.375rem;
+  block-size: 2.375rem;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -308,9 +338,10 @@
   position: relative;
   background: none;
   border: none;
-  height: 100%;
-  width: 100%;
+  block-size: 100%;
+  inline-size: 100%;
   border: 2px solid var(--color-transparent);
+  transition: all 0.3s ease;
 }
 
 .card__icon-button:focus {
@@ -318,52 +349,15 @@
 }
 
 .card__icon-button:focus-visible {
-  outline: none;
   border: 2px solid var(--color);
-  transition: all 0.3s ease;
 }
 
 .card__like-button {
-  height: 100%;
-  min-width: 8.125rem;
+  block-size: 100%;
+  min-inline-size: 8.125rem;
   color: var(--color);
   font-family: var(--add-font);
   font-weight: normal;
-  background: none;
-  border: none;
-  border: 2px solid var(--color);
-  position: relative;
-}
-
-.card__like-button:hover {
-  color: var(--disabled-color);
-  border: 2px solid var(--disabled-color);
-  transition: color 0.3s ease;
-}
-
-.card__like-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: var(--color);
-  height: 100%;
-  width: 0;
-  transition: 0.5s;
-}
-
-.card__like-button:hover::before {
-  content: "";
-  background: var(--color);
-  width: 100%;
-  transform: scale(1);
-  transition: all 0.5s ease-in-out;
-}
-
-.card__like-button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0;
-  transition: all 0.3s ease;
 }
 
 .main__button {
@@ -371,52 +365,11 @@
     clamp(6.25rem, 6.184rem + 0.2817vw, 6.4375rem) 0;
   padding: 0;
   color: var(--color);
-  background: var(--background-color);
-  border: 2px solid var(--color);
   min-inline-size: 20.9375rem;
   min-block-size: 3.4375rem;
-  position: relative;
-}
-
-.main__button:hover {
-  border: 2px solid var(--disabled-color);
-  color: var(--disabled-color);
-  transition: all 0.3s ease;
-}
-
-.main__button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: var(--color);
-  height: 100%;
-  width: 0;
-  transition: 0.5s;
-}
-
-.main__button:hover::before {
-  content: "";
-  background: var(--color);
-  width: 100%;
-  transform: scale(1);
-  transition: all 0.5s ease-in-out;
-  z-index: 0;
-}
-
-.main__button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0;
-  transition: all 0.3s ease;
-}
-
-.main__button:disabled {
-  pointer-events: none;
-  cursor: none;
 }
 
 .button__text {
-  text-transform: uppercase;
   color: var(--blend-diff-color);
   font-family: var(--add-font);
   font-size: 0.875rem;
@@ -425,17 +378,21 @@
   position: relative;
   z-index: 10;
   mix-blend-mode: difference;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
 }
 
 .floppy {
-  max-width: 21px;
-  max-height: 21px;
+  max-inline-size: 21px;
+  max-block-size: 21px;
 }
 
 @media screen and (max-width: 376px) {
   .floppy {
-    max-width: 28px;
-    max-height: 28px;
+    max-inline-size: 28px;
+    max-block-size: 28px;
   }
   .main__button {
     min-inline-size: 19.125rem;
@@ -461,7 +418,6 @@ dialog {
 }
 
 .dialog__text {
-  white-space: pre-line;
   text-transform: uppercase;
   grid-area: text;
   color: var(--color);
@@ -472,54 +428,14 @@ dialog {
 }
 
 .dialog__button {
+  text-transform: uppercase;
   grid-area: button;
   inline-size: clamp(16.0625rem, 15.2702rem + 3.3803vw, 18.3125rem);
   min-block-size: 2.375rem;
   background: none;
-  border: 2px solid var(--color);
-  position: relative;
-}
-
-.dialog__button:focus {
-  outline: none;
-}
-
-.dialog__button:focus-visible {
-  box-shadow: 2px 2px 0;
-  transition: all 0.3s ease;
-}
-
-.dialog__button:hover {
-  border: 2px solid var(--disabled-color);
-  color: var(--disabled-color);
-  transition: all 0.3s ease;
-}
-
-.dialog__button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: var(--color);
-  height: 100%;
-  width: 0;
-  transition: 0.5s;
-}
-
-.dialog__button:hover::before {
-  content: "";
-  background: var(--color);
-  width: 100%;
-  transform: scale(1);
-  transition: all 0.5s ease-in-out;
-  z-index: 0;
 }
 
 dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.75);
-}
-
-dialog + .backdrop {
   background-color: rgb(0 0 0 / 0.75);
 }
 
